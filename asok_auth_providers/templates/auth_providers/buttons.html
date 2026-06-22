@@ -1,0 +1,43 @@
+<!--
+    Sign-in buttons macro (asok-auth-providers).
+    See the project README for usage — examples kept out of this comment
+    on purpose: Asok's preprocessor expands {%- include -%} tags found
+    anywhere in the source (including HTML comments), which would create
+    a runaway recursion if a sample usage were included here.
+-->
+{% set config_providers = request.environ["asok.app"].config["OAUTH_PROVIDERS"] or {} %}
+{% set enabled_providers = [] %}
+{% for p in ["google", "github", "microsoft", "apple", "discord", "facebook", "gitlab", "linkedin", "twitch"] %}
+    {% if config_providers.get(p) %}
+        {% do enabled_providers.append(p) %}
+    {% endif %}
+{% endfor %}
+{% if not enabled_providers %}
+    {% set enabled_providers = ["google", "github", "microsoft", "apple", "discord", "facebook", "gitlab", "linkedin"] %}
+{% endif %}
+{% set providers_list = providers or enabled_providers %}
+{% set next_val = next_url or "" %}
+{% set is_compact = compact or oauth_compact or false %}
+{% set custom_labels = labels or {} %}
+{% set format_str = label_format or oauth_label_format or "" %}
+{% set custom_btn_class = button_class or "" %}
+{% set custom_extra_class = extra_class or "" %}
+{% set custom_label_class = label_class or "" %}
+{% for p in providers_list %}
+    {% set config_provider = config_providers.get(p) or {} %}
+    {% set config_label = config_provider.get("label") or "" %}
+    {% set base_label = custom_labels.get(p) or config_label or oauth_providers.get(p, p|capitalize) %}
+    {% set btn_label = base_label %}
+    {% if format_str %}
+        {% if "{}" in format_str %}
+            {% set btn_label = format_str.replace("{}", base_label) %}
+        {% else %}
+            {% set btn_label = format_str + " " + base_label %}
+        {% endif %}
+    {% endif %}
+    {% set btn_href = "/auth/" + p + "/login" + ("?next=" + (next_val|urlencode) if next_val else "") %}
+    <a class="{% if custom_btn_class %}{{ custom_btn_class }}{% else %}oauth-btn{% endif %} oauth-btn-{{ p }}{% if is_compact %} oauth-btn-compact{% endif %}{% if custom_extra_class %} {{ custom_extra_class }}{% endif %}" href="{{ btn_href }}" rel="nofollow" title="{{ btn_label }}" aria-label="{{ btn_label }}">
+        <span class="oauth-btn-icon" aria-hidden="true">{{ oauth_icon(p) }}</span>
+        <span class="oauth-btn-label{% if is_compact %} oauth-btn-label-hidden{% endif %}{% if custom_label_class %} {{ custom_label_class }}{% endif %}">{{ btn_label }}</span>
+    </a>
+{% endfor %}

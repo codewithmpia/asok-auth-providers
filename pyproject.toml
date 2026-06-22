@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "asok-auth-providers"
+version = "1.0.0"
+description = "OAuth2 providers pack (Google, GitHub, Microsoft, Apple, Discord, Facebook, GitLab, LinkedIn, Twitch) for the Asok framework."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+  { name = "Mpia Mimpiya PULUDISU" }
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Security",
+]
+dependencies = [
+    "asok>=0.4.0"
+]
+
+[project.urls]
+Homepage = "https://github.com/codewithmpia/asok-auth-providers"
+Repository = "https://github.com/codewithmpia/asok-auth-providers"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["asok_auth_providers*"]
+exclude = ["tests*"]
+
+[tool.setuptools]
+include-package-data = false
+
+[tool.setuptools.package-data]
+asok_auth_providers = [
+    "pages/auth/[[]provider[]]/*.py",
+    "templates/auth_providers/*.html",
+    "static/css/*.min.css",
+    "icons/*.svg",
+]

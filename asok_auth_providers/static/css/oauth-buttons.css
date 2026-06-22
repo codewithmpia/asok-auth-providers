@@ -1,0 +1,153 @@
+/* Enforce monochrome SVG fill colors to match the button text color (white) */
+.oauth-btn-github svg,
+.oauth-btn-github svg *,
+.oauth-btn-apple svg,
+.oauth-btn-apple svg *,
+.oauth-btn-discord svg,
+.oauth-btn-discord svg *,
+.oauth-btn-facebook svg path:not([fill="none"]),
+.oauth-btn-gitlab svg path,
+.oauth-btn-linkedin svg,
+.oauth-btn-linkedin svg *,
+.oauth-btn-twitch svg,
+.oauth-btn-twitch svg * {
+    fill: currentColor !important;
+}
+
+.oauth-buttons-compact {
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: none;
+}
+
+.oauth-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 1.5rem;
+    font-weight: 500;
+    font-family: inherit;
+    text-decoration: none;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background: #fff;
+    color: #111;
+    cursor: pointer;
+    width: fit-content;
+    transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+}
+
+.oauth-btn:active {
+    transform: scale(0.98);
+}
+
+.oauth-btn:hover {
+    background: #f5f5f5;
+    border-color: rgba(0, 0, 0, 0.2);
+}
+
+.oauth-btn-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1rem;
+    height: 1rem;
+    flex-shrink: 0;
+}
+
+.oauth-btn-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.oauth-btn-compact {
+    padding: 0.5rem;
+    gap: 0;
+}
+
+.oauth-btn-compact .oauth-btn-icon {
+    width: 1rem;
+    height: 1rem;
+}
+
+.oauth-btn-label-hidden {
+    display: none;
+}
+
+.oauth-btn-google {
+    color: #111;
+}
+
+.oauth-btn-github {
+    background: #24292f;
+    color: #fff;
+    border-color: transparent;
+}
+
+.oauth-btn-github:hover {
+    background: #1c2128;
+}
+
+.oauth-btn-microsoft {
+    color: #111;
+}
+
+.oauth-btn-apple {
+    background: #000;
+    color: #fff;
+    border-color: transparent;
+}
+
+.oauth-btn-apple:hover {
+    background: #1a1a1a;
+}
+
+.oauth-btn-discord {
+    background: #5865f2;
+    color: #fff;
+    border-color: transparent;
+}
+
+.oauth-btn-discord:hover {
+    background: #4752c4;
+}
+
+.oauth-btn-facebook {
+    background: #1877f2;
+    color: #fff;
+    border-color: transparent;
+}
+
+.oauth-btn-facebook:hover {
+    background: #166fe5;
+}
+
+.oauth-btn-gitlab {
+    background: #fc6d26;
+    color: #fff;
+    border-color: transparent;
+}
+
+.oauth-btn-gitlab:hover {
+    background: #e24329;
+}
+
+.oauth-btn-linkedin {
+    background: #0a66c2;
+    color: #fff;
+    border-color: transparent;
+}
+
+.oauth-btn-linkedin:hover {
+    background: #084e98;
+}
+
+.oauth-btn-twitch {
+    background: #9146ff;
+    color: #fff;
+    border-color: transparent;
+}
+
+.oauth-btn-twitch:hover {
+    background: #7d3ce7;
+}
